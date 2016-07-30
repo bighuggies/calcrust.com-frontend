@@ -7,15 +7,15 @@
             <input type="text" ng-model="itemFilter.name" />
         </div>
         <perfect-scrollbar class="browser-wrapper scroller">
-            <a ui-sref="itembps.item.info({ id: item.id })" ng-repeat="item in filteredItems">
+            <a ui-sref="itembps.item.info({ id: item.id })" ng-repeat="item in filteredItems track by item.id">
                 <div class="item clearfix item-row" ng-class="{ 'active': itemActive(item) }">
                     <div class="image">
-                        <img ng-src="/img/icons/{{item.id}}_small.png" />
+                        <img ng-src="/img/icons/{{::item.id}}_small.png" />
                     </div>
                     <div class="info">
-                        <span class="name">{{item.name}}</span>
+                        <span class="name">{{::item.name}}</span>
                         <br />
-                        <span class="description" title="{{item.description}}">{{item.description | limitLength: 61}}</span>
+                        <span class="description" title="{{::item.description}}">{{::item.description | limitLength: 61}}</span>
                     </div>
                 </div>
             </a>
@@ -28,20 +28,20 @@
             <input type="text" ng-model="blueprintFilter.name" />
         </div>
         <perfect-scrollbar class="browser-wrapper scroller">
-            <a ui-sref="itembps.item.recipe({ id: recipe.output.item.id, count: 1 })" ng-repeat="recipe in filteredRecipes">
+            <a ui-sref="itembps.item.recipe({ id: recipe.output.item.id, count: 1 })" ng-repeat="recipe in filteredRecipes track by recipe.output.item.id">
                 <div class="blueprint clearfix item-row" ng-class="{ 'active': bpActive(recipe) }">
                     <div class="image">
-                        <img ng-src="/img/icons/{{recipe.output.item.id}}_small.png" />
+                        <img ng-src="/img/icons/{{::recipe.output.item.id}}_small.png" />
                     </div>
                     <div class="info">
-                        <span class="name">{{recipe.output.item.name}}</span>
+                        <span class="name">{{::recipe.output.item.name}}</span>
                         <br />
-                        <span class="description" title="{{recipe.input | friendlyRecipeInput}}">{{recipe.input | friendlyRecipeInput | limitLength: 65}}</span>
+                        <span class="description" title="{{::recipe.input | friendlyRecipeInput}}">{{::recipe.input | friendlyRecipeInput | limitLength: 65}}</span>
                     </div>
                     <div class="xp-info">
                         <div class="box level" title="Level">
                             <i class="fa fa-star"></i>
-                            {{recipe.level}}
+                            {{::recipe.level}}
                         </div>
                     </div>
                 </div>
